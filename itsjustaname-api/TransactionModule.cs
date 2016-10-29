@@ -1,4 +1,5 @@
-﻿using Nancy;
+﻿using itsjustaname_api.Services;
+using Nancy;
 
 namespace itsjustaname_api
 {
@@ -6,7 +7,7 @@ namespace itsjustaname_api
     {
         public TransactionModule(ITransactionService transactionService)
         {
-            Get["/transactions"] = _ => transactionService.GetTransactions();
+            Get["/transactions"] = _ => Response.AsJson(transactionService.GetTransactions());
         }
     }
 }

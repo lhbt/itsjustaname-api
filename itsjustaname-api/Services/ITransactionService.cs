@@ -1,4 +1,4 @@
-﻿namespace itsjustaname_api
+﻿namespace itsjustaname_api.Services
 {
     public interface ITransactionService
     {

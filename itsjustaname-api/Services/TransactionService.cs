@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-
-namespace itsjustaname_api
+﻿namespace itsjustaname_api.Services
 {
     public class TransactionService : ITransactionService
     {

@@ -1,5 +1,4 @@
-﻿
-
+﻿using Nancy;
 using Nancy.Testing;
 using NUnit.Framework;
 
@@ -14,7 +13,7 @@ namespace itsjustaname_api.tests
             var browser = new Browser(new Bootstrapper());
             var response = browser.Get("/transactions");
 
-            Assert.That(response.Body.AsString(), Is.Not.EqualTo(string.Empty));
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
     }
 }
