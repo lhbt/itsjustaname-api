@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using itsjustaname_api.Models;
 using itsjustaname_api.Repositories;
@@ -36,7 +37,8 @@ namespace itsjustaname_api.Services
 
         private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(IEnumerable<DailyTransactionBlockModel> transactions)
         {
-            var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(transactions);
+            var orderedTransactions = transactions.OrderByDescending(t => t.Date);
+            var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(orderedTransactions);
 
             return mappedTransactions;
         }
