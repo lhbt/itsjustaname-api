@@ -31,7 +31,11 @@ namespace itsjustaname_api.MappingConfigurations
             {
                 return src.Merchant;
             }
-            return src.Category;
+            if (src.Category != "Uncategorized")
+            {
+                return src.Category;
+            }
+            return src.Description;
         }
     }
 }
