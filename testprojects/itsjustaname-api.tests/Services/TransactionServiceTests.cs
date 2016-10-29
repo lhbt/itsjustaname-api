@@ -1,5 +1,8 @@
-﻿using CsQuery.Utility;
+﻿using AutoMapper;
+using CsQuery.Utility;
+using itsjustaname_api.Repositories;
 using itsjustaname_api.Services;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace itsjustaname_api.tests.Services
@@ -10,11 +13,13 @@ namespace itsjustaname_api.tests.Services
         [Test]
         public void GetSerializedTransactions_ReturnsAllTransactionsSerialisedToJsonSuccesfully()
         {
-            //var transactionRepository;
-            //var service = new TransactionService(transactionRepository);
-            //var result = service.GetTransactions();
-            
-            //Assert.IsTrue(JSON.IsJsonArray(result));
+            var transactionRepository = Substitute.For<IDailyTransactionBlockRepository>();
+            var mapper = MapperConfig.Initialise();
+            var service = new TransactionService(transactionRepository, mapper);
+            var result = service.GetTransactionsAsJson();
+
+            transactionRepository.Received(1).GetAllDailyTransactionBlocks();
+            Assert.IsTrue(JSON.IsJsonArray(result));
         }
     }
 }

@@ -1,57 +1,44 @@
-﻿namespace itsjustaname_api.Services
+﻿using System.Collections.Generic;
+using AutoMapper;
+using itsjustaname_api.Models;
+using itsjustaname_api.Repositories;
+using itsjustaname_api.ViewModels;
+using Newtonsoft.Json;
+
+namespace itsjustaname_api.Services
 {
     public class TransactionService : ITransactionService
     {
+        private readonly IDailyTransactionBlockRepository _dailyTransactionBlockRepository;
+        private readonly IMapper _mapper;
 
-        private string mockTransactionJsonData = "[{" 
-+ "\"date\": \"2016-08-01\","
-+ "\"avgSpent\": 50,"
-+ "\"avgReceived\": 200,"
-+ "\"transactions\": ["
-+ "{"
-+ "\"name\": \"salary\","
-+ "\"amount\": 200,"
-+ "\"type\": \"credit\""
-+ "},"
-+ "{"
-+ "\"name\": \"tesco\","
-+ "\"amount\": -20,"
-+ "\"type\": \"debit\""
-+ "},"
-+ "{"
-+ "\"name\": \"pornhub account\","
-+ "\"amount\": -30,"
-+ "\"type\": \"debit\""
-+ "}"
-+ "]"
-+ "},"
-+ "{"
-+ "\"date\": \"2016-08-04\","
-+ "\"avgSpent\": 1000,"
-+ "\"avgReceived\": 0,"
-+ "\"transactions\": ["
-+ "{"
-+ "\"name\": \"playstation4\","
-+ "\"amount\": -400,"
-+ "\"type\": \"debit\""
-+ "},"
-+ "{"
-+ "\"name\": \"tesco\","
-+ "\"amount\": -50,"
-+ "\"type\": \"debit\""
-+ "},"
-+ "{"
-+ "\"name\": \"computer\","
-+ "\"amount\": -550,"
-+ "\"type\": \"debit\""
-+ "}"
-+ "]"
-+ "}]";
-
-
-        public string GetTransactions()
+        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper)
         {
-            return mockTransactionJsonData;
+            _dailyTransactionBlockRepository = dailyTransactionBlockRepository;
+            _mapper = mapper;
+        }
+
+        public string GetTransactionsAsJson()
+        {
+            var mappedTransactions = GetTransactions();
+
+            var result = JsonConvert.SerializeObject(mappedTransactions);
+            return result;
+        }
+
+        public IEnumerable<DailyTransactionBlockViewModel> GetTransactions()
+        {
+            var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
+
+            var mappedTransactions = MapToDailyTransactionBlockViewModel(transactions);
+            return mappedTransactions;
+        }
+
+        private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(IEnumerable<DailyTransactionBlockModel> transactions)
+        {
+            var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(transactions);
+
+            return mappedTransactions;
         }
     }
 }

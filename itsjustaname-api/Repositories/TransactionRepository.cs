@@ -1,15 +1,24 @@
-﻿namespace itsjustaname_api.Repositories
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using itsjustaname_api.Models;
+using Newtonsoft.Json;
+
+namespace itsjustaname_api.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
-        public string GetAll()
+        public IEnumerable<TransactionModel> GetAll()
         {
-            return string.Empty;
+            var result = GetTransactionsFromFile();
+            return result;
         }
-    }
 
-    public interface ITransactionRepository
-    {
-        string GetAll();
+        private IEnumerable<TransactionModel> GetTransactionsFromFile()
+        {
+            var startupPath = AppDomain.CurrentDomain.BaseDirectory;
+            var result = JsonConvert.DeserializeObject<TransactionModel[]>(File.ReadAllText(startupPath + "/MockData/mock.json"));
+            return result;
+        }
     }
 }
