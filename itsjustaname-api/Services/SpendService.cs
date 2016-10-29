@@ -1,4 +1,5 @@
-﻿using itsjustaname_api.Models;
+﻿using System.Threading.Tasks;
+using itsjustaname_api.Models;
 using itsjustaname_api.Repositories;
 
 namespace itsjustaname_api.Services
@@ -6,22 +7,26 @@ namespace itsjustaname_api.Services
     public class SpendService : ISpendService
     {
         private readonly IKeywordRepository _keywordsRepository;
+        private readonly IEbayService _ebayService;
 
-        public SpendService(IKeywordRepository keywordsRepository)
+        public SpendService(IKeywordRepository keywordsRepository, IEbayService ebayService)
         {
             _keywordsRepository = keywordsRepository;
+            _ebayService = ebayService;
         }
 
         public SpendModel GetRandomIdea()
         {
             var keyword = _keywordsRepository.GetRandomKeyword();
+
+            var ebayProduct = _ebayService.GetEbayProduct(keyword);
             
             return new SpendModel
             {
-                ImageUrl = "http://thumbs4.ebaystatic.com/m/m-t38kJKKUVaDGi309wo2JA/140.jpg",
-                Price = 219.99,
-                Name = "Beko WMB61432B Free Standing 6Kg 1400 Spin Slim Depth Washing Machine - Black",
-                LinkToArticle = "http://www.ebay.co.uk/itm/Beko-WMB61432B-Free-Standing-6Kg-1400-Spin-Slim-Depth-Washing-Machine-Black-/361504943331"
+                ImageUrl = ebayProduct.ImageUrl,
+                Price = ebayProduct.Price,
+                Name = ebayProduct.Name,
+                LinkToArticle = ebayProduct.ItemUrl
             };
         }
     }

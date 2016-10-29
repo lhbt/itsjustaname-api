@@ -3,8 +3,8 @@ using itsjustaname_api.Models;
 
 namespace itsjustaname_api.Services
 {
-    public interface ISpendService
+    public interface IEbayService
     {
-        SpendModel GetRandomIdea();
+        EbayProductModel GetEbayProduct(string keyword);
     }
 }

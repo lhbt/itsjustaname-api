@@ -58,6 +58,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
@@ -74,9 +76,19 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="MapperConfig.cs" />
+    <Compile Include="Models\EbayProductModel.cs" />
     <Compile Include="Models\SpendModel.cs" />
     <Compile Include="Repositories\IKeywordRepository.cs" />
+    <Compile Include="Models\EbayModels\EbayItem.cs" />
+    <Compile Include="Models\EbayModels\EbayResponse.cs" />
+    <Compile Include="Models\EbayModels\EbaySearchResult.cs" />
+    <Compile Include="Repositories\KeywordRepository.cs" />
+    <Compile Include="Services\EbayService.cs" />
+    <Compile Include="Services\IEbayService.cs" />
     <Compile Include="Services\ISpendService.cs" />
+    <Compile Include="Models\EbayModels\Prices.cs" />
+    <Compile Include="Models\EbayModels\ResponseItem.cs" />
+    <Compile Include="Models\EbayModels\SellingStatus.cs" />
     <Compile Include="Services\SpendService.cs" />
     <Compile Include="SpendModule.cs" />
     <Compile Include="MappingConfigurations\TransactionMappingConfiguration.cs" />
