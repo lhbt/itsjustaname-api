@@ -75,6 +75,7 @@
     <Compile Include="Services\SpendServiceTests.cs" />
     <Compile Include="Services\SummaryServiceTests.cs" />
     <Compile Include="Services\TransactionServiceTests.cs" />
+    <Compile Include="Services\UpgradeSpendingServiceTests.cs" />
     <Compile Include="TransactionModuleTests.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -82,6 +82,7 @@
     <Compile Include="MappingConfigurations\TransactionMappingConfiguration.cs" />
     <Compile Include="Models\DailyTransactionBlockModel.cs" />
     <Compile Include="Models\SummaryModel.cs" />
+    <Compile Include="Models\UpgradeModel.cs" />
     <Compile Include="Repositories\IDailyTransactionBlockRepository.cs" />
     <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Repositories\DailyTransactionBlockRepository.cs" />
@@ -90,11 +91,14 @@
     <Compile Include="Services\ISummaryService.cs" />
     <Compile Include="Services\ITransactionService.cs" />
     <Compile Include="IndexModule.cs" />
+    <Compile Include="Services\IUpgradeSpendingService.cs" />
     <Compile Include="Services\SummaryService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UpgradeSpendingService.cs" />
     <Compile Include="SummaryModule.cs" />
     <Compile Include="TransactionModule.cs" />
+    <Compile Include="UpgradeSpendingModule.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
