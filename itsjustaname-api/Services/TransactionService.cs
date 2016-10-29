@@ -12,7 +12,6 @@ namespace itsjustaname_api.Services
             _dailyTransactionBlockRepository = dailyTransactionBlockRepository;
         }
 
-
         public string GetTransactions()
         {
             var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
