@@ -6,11 +6,11 @@ namespace itsjustaname_api.ViewModels
 {
     public class DailyTransactionBlockViewModel
     {
-        [JsonProperty("totalSpend")]
-        public long? TotalSpend { get; set; }
+        [JsonProperty("totalSpent")]
+        public double TotalSpent { get; set; }
 
         [JsonProperty("totalReceived")]
-        public long? TotalReceived { get; set; }
+        public double TotalReceived { get; set; }
 
         [JsonProperty("transactions")]
         public IEnumerable<TransactionViewModel> Transactions { get; set; }

@@ -18,14 +18,20 @@ namespace itsjustaname_api.Services
             _mapper = mapper;
         }
 
-        public string GetTransactions()
+        public string GetTransactionsAsJson()
+        {
+            var mappedTransactions = GetTransactions();
+
+            var result = JsonConvert.SerializeObject(mappedTransactions);
+            return result;
+        }
+
+        public IEnumerable<DailyTransactionBlockViewModel> GetTransactions()
         {
             var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
 
             var mappedTransactions = MapToDailyTransactionBlockViewModel(transactions);
-
-            var result = JsonConvert.SerializeObject(mappedTransactions);
-            return result;
+            return mappedTransactions;
         }
 
         private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(IEnumerable<DailyTransactionBlockModel> transactions)
