@@ -22,11 +22,15 @@ namespace itsjustaname_api.Repositories
         {
             var listRequest = _searchEngine.Cse.List(name);
             listRequest.Cx = SearchEngineId;
-            listRequest.FileType = "png";
-            listRequest.ImgType = CseResource.ListRequest.ImgTypeEnum.Photo;
+            listRequest.SearchType = CseResource.ListRequest.SearchTypeEnum.Image;
             var queryResult = listRequest.Execute();
-            var links = queryResult.Items.Select(r => r.Link);
-            return links;
+            if (queryResult.Items != null)
+            {
+                var links = queryResult.Items.Select(r => r.Link);
+                return links;
+            }
+
+            return new List<string>();
         }
     }
 }
