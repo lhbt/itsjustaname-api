@@ -3,7 +3,7 @@ using itsjustaname_api.Models;
 
 namespace itsjustaname_api.Repositories
 {
-    public interface IDailyTransactionBlockRepositoryTransactionRepository
+    public interface IDailyTransactionBlockRepository
     {
         IEnumerable<DailyTransactionBlock> GetAllDailyTransactionBlocks();
     }

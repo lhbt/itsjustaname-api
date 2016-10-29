@@ -70,9 +70,11 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\DailyTransactionBlock.cs" />
-    <Compile Include="Repositories\IDailyTransactionBlockRepositoryTransactionRepository.cs" />
+    <Compile Include="Repositories\IDailyTransactionBlockRepository.cs" />
     <Compile Include="Models\TransactionModel.cs" />
-    <Compile Include="Repositories\DailyDailyTransactionBlockBlockRepositoryTransactionRepository.cs" />
+    <Compile Include="Repositories\DailyTransactionBlockRepository.cs" />
+    <Compile Include="Repositories\ITransactionRepository.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Services\ITransactionService.cs" />
     <Compile Include="IndexModule.cs" />
     <Compile Include="Services\TransactionService.cs" />

@@ -12,7 +12,7 @@ namespace itsjustaname_api.tests.Services
         [Test]
         public void GetSerializedTransactions_ReturnsAllTransactionsSerialisedToJsonSuccesfully()
         {
-            var transactionRepository = Substitute.For<IDailyTransactionBlockRepositoryTransactionRepository>();
+            var transactionRepository = Substitute.For<IDailyTransactionBlockRepository>();
             var service = new TransactionService(transactionRepository);
             var result = service.GetTransactions();
 
