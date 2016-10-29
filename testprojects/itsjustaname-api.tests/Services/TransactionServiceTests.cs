@@ -15,7 +15,7 @@ namespace itsjustaname_api.tests.Services
         {
             var transactionRepository = Substitute.For<IDailyTransactionBlockRepository>();
             var mapper = MapperConfig.Initialise();
-            var service = new TransactionService(transactionRepository, mapper);
+            var service = new TransactionService(transactionRepository, mapper, Substitute.For<IUpgradeSpendingService>());
             var result = service.GetTransactionsAsJson();
 
             transactionRepository.Received(1).GetAllDailyTransactionBlocks();
