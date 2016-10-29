@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using itsjustaname_api.Repositories;
 using itsjustaname_api.Services;
 using NUnit.Framework;
 
@@ -10,7 +11,8 @@ namespace itsjustaname_api.tests.Services
         [Test]
         public void GivenTescoAsParameter_ReturnWaitroseUpgrade()
         {
-            var upgradeSpendingService = new UpgradeSpendingService();
+            var upgradeRepo = new UpgradeSpendingRepository();
+            var upgradeSpendingService = new UpgradeSpendingService(upgradeRepo);
             var upgrades = upgradeSpendingService.FindUpgrade("tesco");
 
             Assert.IsTrue(upgrades.Any(u => u.Name.ToLower() == "waitrose"));
