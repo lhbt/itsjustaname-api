@@ -74,6 +74,11 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="MapperConfig.cs" />
+    <Compile Include="Models\SpendModel.cs" />
+    <Compile Include="Repositories\IKeywordRepository.cs" />
+    <Compile Include="Services\ISpendService.cs" />
+    <Compile Include="Services\SpendService.cs" />
+    <Compile Include="SpendModule.cs" />
     <Compile Include="MappingConfigurations\TransactionMappingConfiguration.cs" />
     <Compile Include="Models\DailyTransactionBlockModel.cs" />
     <Compile Include="Models\SummaryModel.cs" />
