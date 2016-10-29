@@ -13,9 +13,9 @@ namespace itsjustaname_api.Repositories
             _transactionRepo = transactionRepo;
         }
 
-        public IEnumerable<DailyTransactionBlock> GetAllDailyTransactionBlocks()
+        public IEnumerable<DailyTransactionBlockModel> GetAllDailyTransactionBlocks()
         {
-            var result = new List<DailyTransactionBlock>();
+            var result = new List<DailyTransactionBlockModel>();
 
             var transactions = _transactionRepo.GetAll();
 
@@ -25,9 +25,9 @@ namespace itsjustaname_api.Repositories
             return result;
         }
 
-        private static IEnumerable<DailyTransactionBlock> MapTransactionsToDailyBlocks(IEnumerable<TransactionModel> transactions)
+        private static IEnumerable<DailyTransactionBlockModel> MapTransactionsToDailyBlocks(IEnumerable<TransactionModel> transactions)
         {
-            return transactions.GroupBy(t => t.CreatedDate).Select(ts => new DailyTransactionBlock
+            return transactions.GroupBy(t => t.CreatedDate).Select(ts => new DailyTransactionBlockModel
             {
                 Date = ts.Key,
                 Transactions = ts.ToList()

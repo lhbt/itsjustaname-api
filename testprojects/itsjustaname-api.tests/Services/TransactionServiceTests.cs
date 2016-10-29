@@ -13,6 +13,7 @@ namespace itsjustaname_api.tests.Services
         public void GetSerializedTransactions_ReturnsAllTransactionsSerialisedToJsonSuccesfully()
         {
             var transactionRepository = Substitute.For<IDailyTransactionBlockRepository>();
+            var mapper = MapperConfig.Initialise();
             var service = new TransactionService(transactionRepository);
             var result = service.GetTransactions();
 

@@ -5,6 +5,6 @@ namespace itsjustaname_api.Repositories
 {
     public interface IDailyTransactionBlockRepository
     {
-        IEnumerable<DailyTransactionBlock> GetAllDailyTransactionBlocks();
+        IEnumerable<DailyTransactionBlockModel> GetAllDailyTransactionBlocks();
     }
 }

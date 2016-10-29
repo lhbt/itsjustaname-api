@@ -1,4 +1,8 @@
-﻿using itsjustaname_api.Repositories;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using itsjustaname_api.Models;
+using itsjustaname_api.Repositories;
+using itsjustaname_api.ViewModels;
 using Newtonsoft.Json;
 
 namespace itsjustaname_api.Services
@@ -6,17 +10,29 @@ namespace itsjustaname_api.Services
     public class TransactionService : ITransactionService
     {
         private readonly IDailyTransactionBlockRepository _dailyTransactionBlockRepository;
+        private readonly IMapper _mapper;
 
-        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository)
+        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper)
         {
             _dailyTransactionBlockRepository = dailyTransactionBlockRepository;
+            _mapper = mapper;
         }
 
         public string GetTransactions()
         {
             var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
-            var result = JsonConvert.SerializeObject(transactions);
+
+            var mappedTransactions = MapToDailyTransactionBlockViewModel(transactions);
+
+            var result = JsonConvert.SerializeObject(mappedTransactions);
             return result;
+        }
+
+        private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(IEnumerable<DailyTransactionBlockModel> transactions)
+        {
+            var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(transactions);
+
+            return mappedTransactions;
         }
     }
 }

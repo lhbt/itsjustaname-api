@@ -4,10 +4,11 @@ using Newtonsoft.Json;
 
 namespace itsjustaname_api.Models
 {
-    public class DailyTransactionBlock
+    public class DailyTransactionBlockModel
     {
         [JsonProperty("date")]
         public DateTime? Date { get; set; }
+
         [JsonProperty("transactions")]
         public IEnumerable<TransactionModel> Transactions { get; set; }
     }
