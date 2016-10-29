@@ -18,7 +18,9 @@ namespace itsjustaname_api.MappingConfigurations
                 .ForMember(dest => dest.TotalSpent,
                     opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount < 0).Sum(t => t.Amount)))
                 .ForMember(dest => dest.TotalReceived,
-                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount > 0).Sum(t => t.Amount)));
+                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount > 0).Sum(t => t.Amount)))
+                .ForMember(dest => dest.Date,
+                    opt => opt.MapFrom(src => src.Date.Value.ToString("D")));
 
             cfg.CreateMap<SummaryModel, SummaryViewModel>();
         }

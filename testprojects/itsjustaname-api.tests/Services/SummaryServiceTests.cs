@@ -64,13 +64,11 @@ namespace itsjustaname_api.tests.Services
             {
                 new DailyTransactionBlockViewModel
                 {
-                    TotalSpent = 40,
-                    Date = new DateTime(2016, 10, 30)
+                    TotalSpent = 40
                 },
                 new DailyTransactionBlockViewModel
                 {
-                    TotalSpent = 20,
-                    Date = new DateTime(2016, 10, 29)
+                    TotalSpent = 20
                 }
             });
 

@@ -101,7 +101,7 @@
     <Content Include="packages.config" />
     <Content Include="MockData\evestorchallengetransactiondata.csv" />
     <Content Include="MockData\mock.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

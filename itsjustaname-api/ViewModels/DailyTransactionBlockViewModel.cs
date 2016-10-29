@@ -16,6 +16,6 @@ namespace itsjustaname_api.ViewModels
         public IEnumerable<TransactionViewModel> Transactions { get; set; }
 
         [JsonProperty("date")]
-        public DateTime? Date { get; set; }
+        public string Date { get; set; }
     }
 }
