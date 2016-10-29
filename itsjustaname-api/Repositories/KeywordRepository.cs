@@ -15,7 +15,6 @@ namespace itsjustaname_api.Repositories
                 "gardening",
                 "baby clothes",
                 "pets",
-                "vaseline",
                 "deep frying",
                 "coffee",
                 "diy",
@@ -29,7 +28,12 @@ namespace itsjustaname_api.Repositories
                 "pool",
                 "table football",
                 "stadium",
-                "house"
+                "house",
+                "hotel",
+                "kitchen",
+                "car",
+                "computer",
+                "jewelry"
             };
 
             var rnd = new Random();
