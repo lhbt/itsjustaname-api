@@ -13,7 +13,8 @@ namespace itsjustaname_api.MappingConfigurations
                 .ForMember(dest => dest.Type,
                     opt => opt.MapFrom(src => src.CreditOrDebit.ToLower() == "credit" ? "credit" : "debit"))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => MapName(src)))
-                .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount / 100));
+                .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount / 100))
+                .ForMember(dest => dest.ImageUrl, opt => opt.Ignore());
 
             cfg.CreateMap<DailyTransactionBlockModel, DailyTransactionBlockViewModel>()
                 .ForMember(dest => dest.TotalSpent,
@@ -32,7 +33,11 @@ namespace itsjustaname_api.MappingConfigurations
             {
                 return src.Merchant;
             }
-            return src.Category;
+            if (src.Category != "Uncategorized")
+            {
+                return src.Category;
+            }
+            return src.Description;
         }
     }
 }

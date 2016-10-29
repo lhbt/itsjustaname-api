@@ -14,8 +14,9 @@ namespace itsjustaname_api.tests.Services
         public void GetSerializedTransactions_ReturnsAllTransactionsSerialisedToJsonSuccesfully()
         {
             var transactionRepository = Substitute.For<IDailyTransactionBlockRepository>();
+            var itemSearchService = Substitute.For<IItemImageSearchService>();
             var mapper = MapperConfig.Initialise();
-            var service = new TransactionService(transactionRepository, mapper);
+            var service = new TransactionService(transactionRepository, mapper, itemSearchService);
             var result = service.GetTransactionsAsJson();
 
             transactionRepository.Received(1).GetAllDailyTransactionBlocks();

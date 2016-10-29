@@ -11,11 +11,13 @@ namespace itsjustaname_api.Services
     {
         private readonly IDailyTransactionBlockRepository _dailyTransactionBlockRepository;
         private readonly IMapper _mapper;
+        private readonly IItemImageSearchService _itemImageSearchService;
 
-        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper)
+        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper, IItemImageSearchService itemImageSearchService)
         {
             _dailyTransactionBlockRepository = dailyTransactionBlockRepository;
             _mapper = mapper;
+            _itemImageSearchService = itemImageSearchService;
         }
 
         public string GetTransactionsAsJson()
@@ -31,7 +33,21 @@ namespace itsjustaname_api.Services
             var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
 
             var mappedTransactions = MapToDailyTransactionBlockViewModel(transactions);
+
+            //AppendImagesTo(mappedTransactions);
+
             return mappedTransactions;
+        }
+
+        private void AppendImagesTo(IEnumerable<DailyTransactionBlockViewModel> dailyTransactionBlocks)
+        {
+            foreach (var dailyTransactionBlock in dailyTransactionBlocks)
+            {
+                foreach (var transaction in dailyTransactionBlock.Transactions)
+                {
+                    transaction.ImageUrl = _itemImageSearchService.SearchImage(transaction.Name);
+                }
+            }
         }
 
         private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(IEnumerable<DailyTransactionBlockModel> transactions)

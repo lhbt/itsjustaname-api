@@ -12,5 +12,7 @@ namespace itsjustaname_api.ViewModels
 
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }
