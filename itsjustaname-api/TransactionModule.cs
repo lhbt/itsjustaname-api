@@ -7,7 +7,7 @@ namespace itsjustaname_api
     {
         public TransactionModule(ITransactionService transactionService)
         {
-            Get["/transactions"] = _ => Response.AsJson(transactionService.GetTransactions());
+            Get["/transactions"] = _ => Response.AsText(transactionService.GetTransactions());
         }
     }
 }
