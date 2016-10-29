@@ -1,7 +1,11 @@
-﻿namespace itsjustaname_api.Services
+﻿using itsjustaname_api.Repositories;
+using Newtonsoft.Json;
+
+namespace itsjustaname_api.Services
 {
     public class TransactionService : ITransactionService
     {
+        private readonly IDailyTransactionBlockRepositoryTransactionRepository _dailyTransactionBlockRepositoryTransactionRepository;
 
         private string mockTransactionJsonData = @"[
 	{
@@ -51,10 +55,17 @@
 	}
 ]";
 
+        public TransactionService(IDailyTransactionBlockRepositoryTransactionRepository dailyTransactionBlockRepositoryTransactionRepository)
+        {
+            _dailyTransactionBlockRepositoryTransactionRepository = dailyTransactionBlockRepositoryTransactionRepository;
+        }
+
 
         public string GetTransactions()
         {
-            return mockTransactionJsonData;
+            var transactions = _dailyTransactionBlockRepositoryTransactionRepository.GetAllDailyTransactionBlocks();
+            var result = JsonConvert.SerializeObject(transactions);
+            return result;
         }
     }
 }
