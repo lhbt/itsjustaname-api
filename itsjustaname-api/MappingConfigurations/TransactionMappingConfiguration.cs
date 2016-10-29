@@ -12,13 +12,14 @@ namespace itsjustaname_api.MappingConfigurations
             cfg.CreateMap<TransactionModel, TransactionViewModel>()
                 .ForMember(dest => dest.Type,
                     opt => opt.MapFrom(src => src.CreditOrDebit.ToLower() == "credit" ? "credit" : "debit"))
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => MapName(src)));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => MapName(src)))
+                .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount / 100));
 
             cfg.CreateMap<DailyTransactionBlockModel, DailyTransactionBlockViewModel>()
                 .ForMember(dest => dest.TotalSpent,
-                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount < 0).Sum(t => t.Amount)))
+                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount < 0).Sum(t => t.Amount) / 100))
                 .ForMember(dest => dest.TotalReceived,
-                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount > 0).Sum(t => t.Amount)))
+                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount > 0).Sum(t => t.Amount) / 100))
                 .ForMember(dest => dest.Date,
                     opt => opt.MapFrom(src => src.Date.Value.ToString("D")));
 
