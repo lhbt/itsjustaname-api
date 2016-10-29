@@ -4,12 +4,4 @@
     {
         string GetRandomKeyword();
     }
-
-    public class KeywordRepository : IKeywordRepository
-    {
-        public string GetRandomKeyword()
-        {
-            return "washing machines";
-        }
-    }
 }
