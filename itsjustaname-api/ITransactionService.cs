@@ -1,6 +1,6 @@
 ﻿namespace itsjustaname_api
 {
-    public interface IMockTransactionService
+    public interface ITransactionService
     {
         string GetTransactions();
     }

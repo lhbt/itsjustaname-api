@@ -4,7 +4,7 @@ namespace itsjustaname_api
 {
     public class TransactionModule : NancyModule
     {
-        public TransactionModule(IMockTransactionService transactionService)
+        public TransactionModule(ITransactionService transactionService)
         {
             Get["/transactions"] = _ => transactionService.GetTransactions();
         }

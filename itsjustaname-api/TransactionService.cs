@@ -2,7 +2,7 @@
 
 namespace itsjustaname_api
 {
-    public class MockTransactionService : IMockTransactionService
+    public class TransactionService : ITransactionService
     {
 
         private string mockTransactionJsonData = @"[
