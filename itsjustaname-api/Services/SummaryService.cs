@@ -16,9 +16,9 @@ namespace itsjustaname_api.Services
         {
             var transactions = _transactionService.GetTransactions();
             
-            var totalSpent = transactions.Sum(x => x.TotalSpend);
+            var totalSpent = transactions.Sum(x => x.TotalSpent);
             var totalReceived = transactions.Sum(x => x.TotalReceived);
-            var avgDailySpend = transactions.Average(x => x.TotalSpend);
+            var avgDailySpend = transactions.Average(x => x.TotalSpent);
 
             return new SummaryModel
             {
