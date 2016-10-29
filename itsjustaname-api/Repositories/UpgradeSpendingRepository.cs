@@ -36,9 +36,4 @@ namespace itsjustaname_api.Repositories
             return new List<UpgradeModel>();
         }
     }
-
-    public interface IUpgradeSpendingRepository
-    {
-        IEnumerable<UpgradeModel> GetUpgrades(string name);
-    }
 }
