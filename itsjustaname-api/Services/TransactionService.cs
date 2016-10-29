@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using itsjustaname_api.Models;
 using itsjustaname_api.Repositories;
@@ -12,12 +13,13 @@ namespace itsjustaname_api.Services
         private readonly IDailyTransactionBlockRepository _dailyTransactionBlockRepository;
         private readonly IMapper _mapper;
         private readonly IItemImageSearchService _itemImageSearchService;
+        private readonly IUpgradeSpendingService _upgradeSpendingService;
 
-        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper, IItemImageSearchService itemImageSearchService)
+        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper, IUpgradeSpendingService upgradeSpendingService)
         {
             _dailyTransactionBlockRepository = dailyTransactionBlockRepository;
             _mapper = mapper;
-            _itemImageSearchService = itemImageSearchService;
+            _upgradeSpendingService = upgradeSpendingService;
         }
 
         public string GetTransactionsAsJson()
@@ -25,6 +27,7 @@ namespace itsjustaname_api.Services
             var mappedTransactions = GetTransactions();
 
             var result = JsonConvert.SerializeObject(mappedTransactions);
+
             return result;
         }
 
@@ -54,6 +57,14 @@ namespace itsjustaname_api.Services
         {
             var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(transactions);
 
+            foreach (var dailyBlockTransaction in mappedTransactions)
+            {
+                foreach (var transaction in dailyBlockTransaction.Transactions)
+                {
+                    transaction.HasUpgrade = _upgradeSpendingService.FindUpgrade(transaction.Name).Any();
+                }
+            }
+            
             return mappedTransactions;
         }
     }

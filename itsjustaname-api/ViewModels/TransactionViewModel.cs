@@ -14,5 +14,7 @@ namespace itsjustaname_api.ViewModels
         public string Name { get; set; }
 
         public string ImageUrl { get; set; }
+        [JsonProperty("hasUpgrade")]
+        public bool HasUpgrade { get; set; }
     }
 }

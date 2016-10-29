@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using itsjustaname_api.Models;
 
 namespace itsjustaname_api.Services
@@ -18,7 +19,7 @@ namespace itsjustaname_api.Services
             
             var totalSpent = transactions.Sum(x => x.TotalSpent);
             var totalReceived = transactions.Sum(x => x.TotalReceived);
-            var avgDailySpend = transactions.Average(x => x.TotalSpent);
+            var avgDailySpend = Math.Round(transactions.Average(x => x.TotalSpent), 0);
 
             return new SummaryModel
             {
