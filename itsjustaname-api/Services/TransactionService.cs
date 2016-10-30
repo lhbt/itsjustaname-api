@@ -3,7 +3,6 @@ using System.Linq;
 using AutoMapper;
 using itsjustaname_api.Models;
 using itsjustaname_api.Modules;
-using itsjustaname_api.Repositories;
 using itsjustaname_api.Repositories.Interfaces;
 using itsjustaname_api.Services.Interfaces;
 using itsjustaname_api.ViewModels;
@@ -14,11 +13,12 @@ namespace itsjustaname_api.Services
     public class TransactionService : ITransactionService
     {
         private readonly IDailyTransactionBlockRepository _dailyTransactionBlockRepository;
-        private readonly IMapper _mapper;
         private readonly IItemImageSearchService _itemImageSearchService;
+        private readonly IMapper _mapper;
         private readonly IUpgradeSpendingService _upgradeSpendingService;
 
-        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper, IUpgradeSpendingService upgradeSpendingService, IItemImageSearchService itemImageSearchService)
+        public TransactionService(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper,
+            IUpgradeSpendingService upgradeSpendingService, IItemImageSearchService itemImageSearchService)
         {
             _dailyTransactionBlockRepository = dailyTransactionBlockRepository;
             _mapper = mapper;
@@ -51,7 +51,8 @@ namespace itsjustaname_api.Services
             return GetMappedTransactionsWithImages(transactions);
         }
 
-        private IEnumerable<DailyTransactionBlockViewModel> GetMappedTransactionsWithImages(IEnumerable<DailyTransactionBlockModel> transactions)
+        private IEnumerable<DailyTransactionBlockViewModel> GetMappedTransactionsWithImages(
+            IEnumerable<DailyTransactionBlockModel> transactions)
         {
             var mappedTransactions = MapToDailyTransactionBlockViewModel(transactions);
 
@@ -71,7 +72,8 @@ namespace itsjustaname_api.Services
             }
         }
 
-        private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(IEnumerable<DailyTransactionBlockModel> transactions)
+        private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(
+            IEnumerable<DailyTransactionBlockModel> transactions)
         {
             var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(transactions);
 
@@ -82,7 +84,7 @@ namespace itsjustaname_api.Services
                     transaction.HasUpgrade = _upgradeSpendingService.FindUpgrade(transaction.Name).Any();
                 }
             }
-            
+
             return mappedTransactions;
         }
     }

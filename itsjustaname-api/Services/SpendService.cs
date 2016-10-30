@@ -8,8 +8,8 @@ namespace itsjustaname_api.Services
     public class SpendService : ISpendService
     {
         private readonly IEbayService _ebayService;
-        private readonly IMapper _mapper;
         private readonly IKeywordRepository _keywordsRepository;
+        private readonly IMapper _mapper;
 
         public SpendService(IKeywordRepository keywordsRepository, IEbayService ebayService, IMapper mapper)
         {

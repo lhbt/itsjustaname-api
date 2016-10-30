@@ -1,5 +1,6 @@
 using AutoMapper;
 using itsjustaname_api.Models;
+using itsjustaname_api.Models.EbayModels;
 
 namespace itsjustaname_api
 {

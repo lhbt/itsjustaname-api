@@ -10,8 +10,8 @@ namespace itsjustaname_api.Services
 {
     public class SummaryService : ISummaryService
     {
-        private readonly ITransactionService _transactionService;
         private readonly ISpendService _spendService;
+        private readonly ITransactionService _transactionService;
 
         public SummaryService(ITransactionService transactionService, ISpendService spendService)
         {
