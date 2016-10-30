@@ -88,7 +88,8 @@ namespace itsjustaname_api.Services
         private IEnumerable<DailyTransactionBlockViewModel> MapToDailyTransactionBlockViewModel(
             IEnumerable<DailyTransactionBlockModel> transactions)
         {
-            var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(transactions);
+            var orderedTransactions = transactions.OrderByDescending(t => t.Date);
+            var mappedTransactions = _mapper.Map<IEnumerable<DailyTransactionBlockViewModel>>(orderedTransactions);
 
             foreach (var dailyBlockTransaction in mappedTransactions)
             {
