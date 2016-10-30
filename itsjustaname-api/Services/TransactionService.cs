@@ -2,6 +2,7 @@
 using System.Linq;
 using AutoMapper;
 using itsjustaname_api.Models;
+using itsjustaname_api.Modules;
 using itsjustaname_api.Repositories;
 using itsjustaname_api.Repositories.Interfaces;
 using itsjustaname_api.Services.Interfaces;

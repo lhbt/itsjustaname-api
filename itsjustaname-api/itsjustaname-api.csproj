@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="ItemImageModule.cs" />
+    <Compile Include="Modules\ItemImageModule.cs" />
     <Compile Include="MapperConfig.cs" />
     <Compile Include="Models\EbayProductModel.cs" />
     <Compile Include="Models\SpendModel.cs" />
@@ -106,7 +106,7 @@
     <Compile Include="Models\EbayModels\ResponseItem.cs" />
     <Compile Include="Models\EbayModels\SellingStatus.cs" />
     <Compile Include="Services\SpendService.cs" />
-    <Compile Include="SpendModule.cs" />
+    <Compile Include="Modules\SpendModule.cs" />
     <Compile Include="MappingConfigurations\TransactionMappingConfiguration.cs" />
     <Compile Include="Models\DailyTransactionBlockModel.cs" />
     <Compile Include="Models\SummaryModel.cs" />
@@ -118,16 +118,16 @@
     <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Services\Interfaces\ISummaryService.cs" />
     <Compile Include="Services\Interfaces\ITransactionService.cs" />
-    <Compile Include="IndexModule.cs" />
+    <Compile Include="Modules\IndexModule.cs" />
     <Compile Include="Services\Interfaces\IUpgradeSpendingService.cs" />
     <Compile Include="Services\SummaryService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\UpgradeSpendingService.cs" />
-    <Compile Include="SummaryModule.cs" />
-    <Compile Include="TransactionModule.cs" />
-    <Compile Include="UpgradeSpendingModule.cs" />
-    <Compile Include="UserDataModule.cs" />
+    <Compile Include="Modules\SummaryModule.cs" />
+    <Compile Include="Modules\TransactionModule.cs" />
+    <Compile Include="Modules\UpgradeSpendingModule.cs" />
+    <Compile Include="Modules\UserDataModule.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
