@@ -9,10 +9,16 @@ namespace itsjustaname_api.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
+        public TransactionRepository()
+        {
+            _defaultTransactions = GetTransactionsFromFile();
+        }
+
+        private readonly IEnumerable<TransactionModel> _defaultTransactions;
+
         public IEnumerable<TransactionModel> GetAll()
         {
-            var result = GetTransactionsFromFile();
-            return result;
+            return _defaultTransactions;
         }
 
         private IEnumerable<TransactionModel> GetTransactionsFromFile()

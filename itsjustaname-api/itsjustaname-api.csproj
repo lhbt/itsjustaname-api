@@ -84,16 +84,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="MappingConfigurations\AlternativeIncomeConfiguration.cs" />
+    <Compile Include="Models\AlternativeIncomeModel.cs" />
+    <Compile Include="Modules\AlternativeIncomeModule.cs" />
     <Compile Include="Modules\ItemImageModule.cs" />
     <Compile Include="MapperConfig.cs" />
     <Compile Include="Models\EbayProductModel.cs" />
     <Compile Include="Models\SpendModel.cs" />
+    <Compile Include="Repositories\DefaultAlternativeIncomeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IGetDefaultAlternativeIncomeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IItemImageSearchRepository.cs" />
     <Compile Include="Repositories\Interfaces\IKeywordRepository.cs" />
     <Compile Include="Repositories\ItemImageSearchRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUpgradeSpendingRepository.cs" />
     <Compile Include="Repositories\UpgradeSpendingRepository.cs" />
     <Compile Include="Services\EbayStaticService.cs" />
+    <Compile Include="Services\FindAlternativeIncomeService.cs" />
+    <Compile Include="Services\Interfaces\IFindAlternativeIncomeService.cs" />
     <Compile Include="Services\Interfaces\IItemImageSearchService.cs" />
     <Compile Include="Models\EbayModels\EbayItem.cs" />
     <Compile Include="Models\EbayModels\EbayResponse.cs" />
@@ -131,6 +138,7 @@
     <Compile Include="Modules\UserDataModule.cs" />
     <Compile Include="MappingConfigurations\SpendMappingConfiguration.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
+    <Compile Include="ViewModels\AlternativeIncomeViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
   </ItemGroup>
@@ -147,6 +155,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MockData\upgradespending.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MockData\defaultalternativeincome.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Web.Debug.config">
