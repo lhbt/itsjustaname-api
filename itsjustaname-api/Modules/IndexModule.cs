@@ -1,7 +1,7 @@
-﻿namespace itsjustaname_api
-{
-    using Nancy;
+﻿using Nancy;
 
+namespace itsjustaname_api.Modules
+{
     public class IndexModule : NancyModule
     {
         public IndexModule()

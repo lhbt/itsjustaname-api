@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using CsQuery.Utility;
 using itsjustaname_api.Repositories;
+using itsjustaname_api.Repositories.Interfaces;
 using itsjustaname_api.Services;
+using itsjustaname_api.Services.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -14,8 +16,9 @@ namespace itsjustaname_api.tests.Services
         public void GetSerializedTransactions_ReturnsAllTransactionsSerialisedToJsonSuccesfully()
         {
             var transactionRepository = Substitute.For<IDailyTransactionBlockRepository>();
+            var itemSearchService = Substitute.For<IItemImageSearchService>();
             var mapper = MapperConfig.Initialise();
-            var service = new TransactionService(transactionRepository, mapper);
+            var service = new TransactionService(transactionRepository, mapper, Substitute.For<IUpgradeSpendingService>(), itemSearchService);
             var result = service.GetTransactionsAsJson();
 
             transactionRepository.Received(1).GetAllDailyTransactionBlocks();

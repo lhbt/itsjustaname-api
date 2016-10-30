@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using itsjustaname_api.Models;
+using itsjustaname_api.Modules;
+using itsjustaname_api.Repositories.Interfaces;
 
 namespace itsjustaname_api.Repositories
 {
@@ -13,11 +15,21 @@ namespace itsjustaname_api.Repositories
             _transactionRepo = transactionRepo;
         }
 
+        public IEnumerable<DailyTransactionBlockModel> GetDailyTransactionBlocks(UserData userData)
+        {
+            return GetDailyTransactionBlockModels(userData.Transactions);
+        }
+
         public IEnumerable<DailyTransactionBlockModel> GetAllDailyTransactionBlocks()
         {
-            var result = new List<DailyTransactionBlockModel>();
-
             var transactions = _transactionRepo.GetAll();
+
+            return GetDailyTransactionBlockModels(transactions);
+        }
+
+        private static IEnumerable<DailyTransactionBlockModel> GetDailyTransactionBlockModels(IEnumerable<TransactionModel> transactions)
+        {
+            var result = new List<DailyTransactionBlockModel>();
 
             var dailyTransactionBlocks = MapTransactionsToDailyBlocks(transactions);
             result.AddRange(dailyTransactionBlocks);

@@ -2,6 +2,7 @@
 using System.Linq;
 using itsjustaname_api.Models;
 using itsjustaname_api.Repositories;
+using itsjustaname_api.Repositories.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 

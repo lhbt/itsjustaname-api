@@ -1,16 +1,14 @@
-﻿using System.Linq;
-using AutoMapper;
-using itsjustaname_api.Repositories;
-using itsjustaname_api.Services;
+﻿using AutoMapper;
+using itsjustaname_api.Services.Interfaces;
 using itsjustaname_api.ViewModels;
 using Nancy;
 
-namespace itsjustaname_api
+namespace itsjustaname_api.Modules
 {
     public class SummaryModule : NancyModule
     {
-        private readonly ISummaryService _summaryService;
         private readonly IMapper _mapper;
+        private readonly ISummaryService _summaryService;
 
         public SummaryModule(ISummaryService summaryService, IMapper mapper)
         {

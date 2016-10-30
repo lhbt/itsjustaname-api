@@ -1,7 +1,7 @@
-﻿using itsjustaname_api.Services;
+﻿using itsjustaname_api.Services.Interfaces;
 using Nancy;
 
-namespace itsjustaname_api
+namespace itsjustaname_api.Modules
 {
     public class TransactionModule : NancyModule
     {

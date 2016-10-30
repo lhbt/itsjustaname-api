@@ -43,6 +43,10 @@
       <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Nancy, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.1.4.3\lib\net40\Nancy.dll</HintPath>
@@ -58,6 +62,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
@@ -66,6 +73,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Zlib.Portable, Version=1.11.0.0, Culture=neutral, PublicKeyToken=431cba815f6a8b5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\nancy-logo.png" />
@@ -73,23 +84,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Modules\ItemImageModule.cs" />
     <Compile Include="MapperConfig.cs" />
+    <Compile Include="Models\EbayProductModel.cs" />
+    <Compile Include="Models\SpendModel.cs" />
+    <Compile Include="Repositories\Interfaces\IItemImageSearchRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IKeywordRepository.cs" />
+    <Compile Include="Repositories\ItemImageSearchRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUpgradeSpendingRepository.cs" />
+    <Compile Include="Repositories\UpgradeSpendingRepository.cs" />
+    <Compile Include="Services\EbayStaticService.cs" />
+    <Compile Include="Services\Interfaces\IItemImageSearchService.cs" />
+    <Compile Include="Models\EbayModels\EbayItem.cs" />
+    <Compile Include="Models\EbayModels\EbayResponse.cs" />
+    <Compile Include="Models\EbayModels\EbaySearchResult.cs" />
+    <Compile Include="Repositories\KeywordRepository.cs" />
+    <Compile Include="Services\EbayService.cs" />
+    <Compile Include="Services\Interfaces\IEbayService.cs" />
+    <Compile Include="Services\Interfaces\ISpendService.cs" />
+    <Compile Include="Services\ItemImageSearchService.cs" />
+    <Compile Include="Models\EbayModels\Prices.cs" />
+    <Compile Include="Models\EbayModels\ResponseItem.cs" />
+    <Compile Include="Models\EbayModels\SellingStatus.cs" />
+    <Compile Include="Services\SpendService.cs" />
+    <Compile Include="Modules\SpendModule.cs" />
     <Compile Include="MappingConfigurations\TransactionMappingConfiguration.cs" />
     <Compile Include="Models\DailyTransactionBlockModel.cs" />
     <Compile Include="Models\SummaryModel.cs" />
-    <Compile Include="Repositories\IDailyTransactionBlockRepository.cs" />
+    <Compile Include="Models\UpgradeModel.cs" />
+    <Compile Include="Repositories\Interfaces\IDailyTransactionBlockRepository.cs" />
     <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Repositories\DailyTransactionBlockRepository.cs" />
-    <Compile Include="Repositories\ITransactionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITransactionRepository.cs" />
     <Compile Include="Repositories\TransactionRepository.cs" />
-    <Compile Include="Services\ISummaryService.cs" />
-    <Compile Include="Services\ITransactionService.cs" />
-    <Compile Include="IndexModule.cs" />
+    <Compile Include="Services\Interfaces\ISummaryService.cs" />
+    <Compile Include="Services\Interfaces\ITransactionService.cs" />
+    <Compile Include="Modules\IndexModule.cs" />
+    <Compile Include="Services\Interfaces\IUpgradeSpendingService.cs" />
     <Compile Include="Services\SummaryService.cs" />
     <Compile Include="Services\TransactionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SummaryModule.cs" />
-    <Compile Include="TransactionModule.cs" />
+    <Compile Include="Services\UpgradeSpendingService.cs" />
+    <Compile Include="Modules\SummaryModule.cs" />
+    <Compile Include="Modules\TransactionModule.cs" />
+    <Compile Include="Modules\UpgradeSpendingModule.cs" />
+    <Compile Include="Modules\UserDataModule.cs" />
+    <Compile Include="MappingConfigurations\SpendMappingConfiguration.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
@@ -103,6 +143,12 @@
     <Content Include="MockData\mock.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MockData\imagepaths.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MockData\upgradespending.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,7 +156,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,68 @@
+{
+  "tesco": [
+    {
+      "name": "Waitrose",
+      "imageUrl": "http://vectorlogofree.com/wp-content/uploads/2014/06/waitrose-vector-logo-400x400.png",
+      "notes": "You won't believe this! Guaranteed 50% increase in quality for an estimate of 150 pounds for similar purchase!",
+      "link": "http://www.waitrose.com/"
+    },
+    {
+      "name": "Morrisons",
+      "imageUrl": "http://www.underconsideration.com/brandnew/archives/morrisons_logo.png",
+      "notes": "AMAZING - Only 125 pounds for an amazing 25% increase in quality!",
+      "link": "https://groceries.morrisons.com"
+    }
+  ],
+  "amazon.com": [
+    {
+      "name": "Amazon.co.uk",
+      "imageUrl": "https://img.grouponcdn.com/coupons/ujpmDoiTKemNsUDzju8G67/amazon_co_uk-500x500",
+      "notes": "Because the only way to beat amazon.com is to use Amazon UK and pay in Pounds! ",
+      "link": "http://www.amazon.co.uk/"
+    }
+  ],
+  "spar": [
+    {
+      "name": "Waitrose",
+      "imageUrl": "http://vectorlogofree.com/wp-content/uploads/2014/06/waitrose-vector-logo-400x400.png",
+      "notes": "You won't believe this! Guaranteed 50% increase in quality for an estimate of 150 pounds for similar purchase!",
+      "link": "http://www.waitrose.com/"
+    },
+    {
+      "name": "Morrisons",
+      "imageUrl": "http://www.underconsideration.com/brandnew/archives/morrisons_logo.png",
+      "notes": "AMAZING - Only 125 pounds for an amazing 25% increase in quality!",
+      "link": "https://groceries.morrisons.com"
+    }
+  ],
+  "asda": [
+    {
+      "name": "Waitrose",
+      "imageUrl": "http://vectorlogofree.com/wp-content/uploads/2014/06/waitrose-vector-logo-400x400.png",
+      "notes": "You won't believe this! Guaranteed 50% increase in quality for an estimate of 150 pounds for similar purchase!",
+      "link": "http://www.waitrose.com/"
+    },
+    {
+      "name": "Morrisons",
+      "imageUrl": "http://www.underconsideration.com/brandnew/archives/morrisons_logo.png",
+      "notes": "AMAZING - Only 125 pounds for an amazing 25% increase in quality!",
+      "link": "https://groceries.morrisons.com"
+    }
+  ],
+  "starbucks": [
+    {
+      "name": "Lavazza Coffee",
+      "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/68/84/56/688456d9c537a07acce747fa66c71053.jpg",
+      "notes": "Don't Miss Italy's favourite coffee! Could be your new favourite, for an estimated 50% better quality by paying more pounds!",
+      "link": "http://www.lavazza.co.uk/uk/"
+    }
+  ],
+  "boots": [
+    {
+      "name": "Co-Op Pharmacy",
+      "imageUrl": "http://castledeneshoppingcentre.co.uk/wp-content/uploads/2015/03/The-Co-operative-Pharmacy.png",
+      "notes": "The secret to living longer ... invest in 45% more expensive drugs from the co-op pharmacy for guaranteed success, 9 in 10 patients recommend!",
+      "link": "http://www.coop.co.uk/find-us/pharmacy/"
+    }
+  ]
+}

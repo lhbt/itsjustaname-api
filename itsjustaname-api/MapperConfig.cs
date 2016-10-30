@@ -16,6 +16,7 @@ namespace itsjustaname_api
         private static void CreateConfig(IMapperConfigurationExpression cfg)
         {
             TransactionMappingConfiguration.CreateTransactionMappingLogic(cfg);
+            SpendMappingConfiguration.CreateConfig(cfg);
         }
     }
 }
