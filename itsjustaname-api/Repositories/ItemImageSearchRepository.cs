@@ -32,21 +32,25 @@ namespace itsjustaname_api.Repositories
             }
             else
             {
-                var localCacheSearchResult = SearchLocalCache(name);
-                if (localCacheSearchResult.Any())
+                var searchOtherStoresResult = SearchOtherStores(name);
+                if (!_imageMemoryCache.ContainsKey(name) && searchOtherStoresResult.Any())
                 {
-                    _imageMemoryCache.Add(name, localCacheSearchResult.First());
-                    return localCacheSearchResult;
+                    _imageMemoryCache.Add(name, searchOtherStoresResult.First());
                 }
+                return searchOtherStoresResult;
+            }
+        }
 
-                var searchLocalStore = SearchLocalStore(name);
-                if (searchLocalStore.Any())
-                {
-                    _imageMemoryCache.Add(name, searchLocalStore.First());
-                }
-                return searchLocalStore;
+        private IEnumerable<string> SearchOtherStores(string name)
+        {
+            var localCacheSearchResult = SearchLocalCache(name);
+            if (localCacheSearchResult.Any())
+            {
+                return localCacheSearchResult;
             }
 
+            var searchLocalStore = SearchLocalStore(name);
+            return searchLocalStore;
         }
 
         private IEnumerable<string> SearchLocalCache(string name)
