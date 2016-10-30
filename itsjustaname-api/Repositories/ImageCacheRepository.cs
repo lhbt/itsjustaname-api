@@ -8,16 +8,16 @@ namespace itsjustaname_api.Repositories
         public ImageCacheRepository()
         {
             var path = AppDomain.CurrentDomain.BaseDirectory + "/imagecache/";
-            ImageStore = new FileCache(path);
+            _imageStore = new FileCache(path);
         }
 
-        private FileCache ImageStore { get; }
+        private readonly FileCache _imageStore;
 
         public string GetImage(string name)
         {
-            if (ImageStore.Contains(name))
+            if (_imageStore.Contains(name))
             {
-                return (string)ImageStore.Get(name);
+                return (string)_imageStore.Get(name);
             }
             return string.Empty;
         }

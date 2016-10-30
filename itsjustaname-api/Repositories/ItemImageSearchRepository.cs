@@ -12,11 +12,11 @@ namespace itsjustaname_api.Repositories
     {
         private readonly ImageCacheRepository _imageCache;
 
-        private readonly IDictionary<string, string> ImageMemoryCache; 
+        private readonly IDictionary<string, string> _imageMemoryCache; 
 
         public ItemImageSearchRepository()
         {
-            ImageMemoryCache = new Dictionary<string,string>();
+            _imageMemoryCache = new Dictionary<string,string>();
             _imageCache = new ImageCacheRepository();
             var startupPath = AppDomain.CurrentDomain.BaseDirectory;
             ImageUrls = JsonConvert.DeserializeObject(File.ReadAllText(startupPath + "/MockData/imagepaths.json"));
@@ -26,23 +26,23 @@ namespace itsjustaname_api.Repositories
 
         public IEnumerable<string> Search(string name)
         {
-            if (ImageMemoryCache.ContainsKey(name))
+            if (_imageMemoryCache.ContainsKey(name))
             {
-                return new List<string> {ImageMemoryCache[name]};
+                return new List<string> {_imageMemoryCache[name]};
             }
             else
             {
                 var localCacheSearchResult = SearchLocalCache(name);
                 if (localCacheSearchResult.Any())
                 {
-                    ImageMemoryCache.Add(name, localCacheSearchResult.First());
+                    _imageMemoryCache.Add(name, localCacheSearchResult.First());
                     return localCacheSearchResult;
                 }
 
                 var searchLocalStore = SearchLocalStore(name);
                 if (searchLocalStore.Any())
                 {
-                    ImageMemoryCache.Add(name, searchLocalStore.First());
+                    _imageMemoryCache.Add(name, searchLocalStore.First());
                 }
                 return searchLocalStore;
             }
