@@ -10,8 +10,9 @@ namespace itsjustaname_api.Services
     {
         public EbayProductModel GetEbayProduct(string keyword)
         {
+            const double minPrice = 100.00;
             var ebayRequestUrl =
-                string.Format("http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&GLOBAL-ID=EBAY-GB&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=LaurentH-itsjusta-PRD-1bff3fe44-a2999161&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords={0}&paginationInput.entriesPerPage=10", keyword);
+                string.Format("http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&GLOBAL-ID=EBAY-GB&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=LaurentH-itsjusta-PRD-1bff3fe44-a2999161&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords={0}&paginationInput.entriesPerPage=10&itemFilter.name=MinPrice&itemFilter.value={1}", keyword, minPrice);
             
             var client = new HttpClient();
             var jsonResponse = client.GetStringAsync(new Uri(ebayRequestUrl)).Result;
