@@ -17,13 +17,15 @@ namespace itsjustaname_api.Modules
 
                 var userData = JsonConvert.DeserializeObject<UserData>(jsonData);
 
+                transactionService.AddTransactions(userData);
+
                 var transactions = transactionService.GetTransactions(userData);
                 var summary = summaryService.GetSummary(userData);
 
                 var response = new
                 {
-                    transactions = transactions,
-                    summary = summary
+                    transactions,
+                    summary
                 };
 
                 return Response.AsJson(response);

@@ -6,5 +6,6 @@ namespace itsjustaname_api.Repositories.Interfaces
     public interface ITransactionRepository
     {
         IEnumerable<TransactionModel> GetAll();
+        void AddTransaction(TransactionModel transaction);
     }
 }

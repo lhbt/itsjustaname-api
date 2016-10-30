@@ -14,14 +14,19 @@ namespace itsjustaname_api.Repositories
             _transactionStore = GetInitialTransactions();
         }
 
-        private readonly IEnumerable<TransactionModel> _transactionStore;
+        private readonly IList<TransactionModel> _transactionStore;
 
         public IEnumerable<TransactionModel> GetAll()
         {
             return _transactionStore;
         }
 
-        private IEnumerable<TransactionModel> GetInitialTransactions()
+        public void AddTransaction(TransactionModel transaction)
+        {
+            _transactionStore.Add(transaction);
+        }
+
+        private IList<TransactionModel> GetInitialTransactions()
         {
             var startupPath = AppDomain.CurrentDomain.BaseDirectory;
             var result = JsonConvert.DeserializeObject<TransactionModel[]>(File.ReadAllText(startupPath + "/MockData/mock.json"));
