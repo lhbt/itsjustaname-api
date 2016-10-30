@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace itsjustaname_api.Repositories
 {
@@ -17,9 +19,17 @@ namespace itsjustaname_api.Repositories
 
         public IEnumerable<string> Search(string name)
         {
-            var serialisedValue = ImageUrls[name];
-            var urls = JsonConvert.DeserializeObject<IEnumerable<string>>(serialisedValue);
-            return new List<string>();
+            try
+            {
+                JArray serialisedValue = ImageUrls[name];
+                var urls = serialisedValue.Select(u => (string) u);
+                return urls;
+            }
+            catch (Exception e)
+            {
+                return new List<string>();
+            }
+
         }
     }
 }
