@@ -21,6 +21,7 @@ namespace itsjustaname_api.Repositories
                 {
                     return (string) _imageStore.Get(name);
                 }
+                return string.Empty;
             }
             catch (Exception e)
             {
