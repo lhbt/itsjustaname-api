@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Caching;
-using DuckDuckGo.Net;
 using Newtonsoft.Json;
 
 namespace itsjustaname_api.Repositories
@@ -20,7 +17,8 @@ namespace itsjustaname_api.Repositories
 
         public IEnumerable<string> Search(string name)
         {
-            var x = ImageUrls[name];
+            var serialisedValue = ImageUrls[name];
+            var urls = JsonConvert.DeserializeObject<IEnumerable<string>>(serialisedValue);
             return new List<string>();
         }
     }
