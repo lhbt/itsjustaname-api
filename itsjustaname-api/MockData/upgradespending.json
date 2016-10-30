@@ -12,5 +12,13 @@
       "notes": "AMAZING - Only 125 pounds for an amazing 25% increase in quality!",
       "link": "https://groceries.morrisons.com"
     }
+  ],
+  "amazon.com": [
+    {
+      "name": "Amazon.co.uk",
+      "imageUrl": "https://img.grouponcdn.com/coupons/ujpmDoiTKemNsUDzju8G67/amazon_co_uk-500x500",
+      "notes": "Because the only way to beat amazon.com is to use Amazon UK and pay in Pounds! ",
+      "link": "http://www.amazon.co.uk/"
+    }
   ]
 }
