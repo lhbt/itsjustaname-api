@@ -11,26 +11,30 @@ namespace itsjustaname_api.Services
     public class SummaryService : ISummaryService
     {
         private readonly ISpendService _spendService;
+        private readonly IAssetService _assetService;
         private readonly ITransactionService _transactionService;
 
-        public SummaryService(ITransactionService transactionService, ISpendService spendService)
+        public SummaryService(ITransactionService transactionService, ISpendService spendService, IAssetService assetService)
         {
             _transactionService = transactionService;
             _spendService = spendService;
+            _assetService = assetService;
         }
 
         public SummaryModel GetSummary(UserData userData)
         {
             var transactions = _transactionService.GetTransactions(userData);
 
-            return GetSummaryModelForTransactions(transactions);
+            var summary = GetSummaryModelForTransactions(transactions);
+            return summary;
         }
 
         public SummaryModel GetSummary()
         {
             var transactions = _transactionService.GetTransactions();
 
-            return GetSummaryModelForTransactions(transactions);
+            var summary = GetSummaryModelForTransactions(transactions);
+            return summary;
         }
 
         private SummaryModel GetSummaryModelForTransactions(IEnumerable<DailyTransactionBlockViewModel> transactions)
@@ -52,7 +56,9 @@ namespace itsjustaname_api.Services
                 capital = capital - spendIdea.Price;
             }
 
-            return new SummaryModel
+
+
+            var summary = new SummaryModel
             {
                 TotalSpent = totalSpent,
                 TotalReceived = totalReceived,
@@ -60,6 +66,11 @@ namespace itsjustaname_api.Services
                 Capital = capitalBeforeSpend,
                 SpendingSuggestions = spendingSuggestions
             };
+
+            var assets = _assetService.GetAll();
+            summary.TotalAssetWorth = assets.Sum(a => a.Worth);
+
+            return summary;
         }
     }
 }

@@ -11,6 +11,6 @@ namespace itsjustaname_api.ViewModels
         public string ImageUrl { get; set; }
 
         [JsonProperty("worth")]
-        public string Worth { get; set; }
+        public long Worth { get; set; }
     }
 }
