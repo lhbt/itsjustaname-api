@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using itsjustaname_api.Repositories;
+using itsjustaname_api.Repositories.Interfaces;
 using itsjustaname_api.Services;
 using NSubstitute;
 using NUnit.Framework;

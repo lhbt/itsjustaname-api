@@ -2,6 +2,7 @@
 using System.Net.Http;
 using itsjustaname_api.Models;
 using itsjustaname_api.Models.EbayModels;
+using itsjustaname_api.Services.Interfaces;
 using Newtonsoft.Json;
 
 namespace itsjustaname_api.Services

@@ -1,4 +1,4 @@
-﻿namespace itsjustaname_api.Services
+﻿namespace itsjustaname_api.Services.Interfaces
 {
     public interface IItemImageSearchService
     {

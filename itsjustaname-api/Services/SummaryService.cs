@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using itsjustaname_api.Models;
+using itsjustaname_api.Services.Interfaces;
 using itsjustaname_api.ViewModels;
 
 namespace itsjustaname_api.Services

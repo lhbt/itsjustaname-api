@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using itsjustaname_api.Repositories.Interfaces;
 
 namespace itsjustaname_api.Repositories
 {

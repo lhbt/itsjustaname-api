@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using itsjustaname_api.Models;
 using itsjustaname_api.Services;
+using itsjustaname_api.Services.Interfaces;
 using itsjustaname_api.ViewModels;
 using NSubstitute;
 using NUnit.Framework;

@@ -1,4 +1,5 @@
 ﻿using itsjustaname_api.Services;
+using itsjustaname_api.Services.Interfaces;
 using Nancy;
 
 namespace itsjustaname_api

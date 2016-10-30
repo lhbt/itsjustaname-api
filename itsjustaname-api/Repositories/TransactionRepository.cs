@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using itsjustaname_api.Models;
+using itsjustaname_api.Repositories.Interfaces;
 using Newtonsoft.Json;
 
 namespace itsjustaname_api.Repositories

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace itsjustaname_api.Repositories
+namespace itsjustaname_api.Repositories.Interfaces
 {
     public interface IItemImageSearchRepository
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using itsjustaname_api.Repositories.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

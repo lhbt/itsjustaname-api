@@ -2,6 +2,7 @@
 using itsjustaname_api.Models;
 using itsjustaname_api.Repositories;
 using itsjustaname_api.Services;
+using itsjustaname_api.Services.Interfaces;
 using itsjustaname_api.ViewModels;
 using Nancy;
 using Nancy.Extensions;
