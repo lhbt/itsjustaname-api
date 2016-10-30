@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using itsjustaname_api.Models;
+using itsjustaname_api.ViewModels;
 
 namespace itsjustaname_api.Services
 {
@@ -16,10 +17,22 @@ namespace itsjustaname_api.Services
             _spendService = spendService;
         }
 
+        public SummaryModel GetSummary(UserData userData)
+        {
+            var transactions = _transactionService.GetTransactions(userData);
+
+            return GetSummaryModelForTransactions(transactions);
+        }
+
         public SummaryModel GetSummary()
         {
             var transactions = _transactionService.GetTransactions();
-            
+
+            return GetSummaryModelForTransactions(transactions);
+        }
+
+        private SummaryModel GetSummaryModelForTransactions(IEnumerable<DailyTransactionBlockViewModel> transactions)
+        {
             var totalSpent = transactions.Sum(x => x.TotalSpent);
             var totalReceived = transactions.Sum(x => x.TotalReceived);
             var avgDailySpend = Math.Round(transactions.Average(x => x.TotalSpent), 0);

@@ -87,5 +87,53 @@ namespace itsjustaname_api.tests.Services
             
             Assert.That(actual.AverageDailySpend, Is.EqualTo(30));
         }
+
+        [Test]
+        public void ItShouldReturnASummaryModelForUserData()
+        {
+            var userData = new UserData
+            {
+                Transactions = new List<TransactionModel>
+                {
+                    new TransactionModel
+                    {
+                        CreditOrDebit = "Debit",
+                        Amount = 2500,
+                        Merchant = "tesco",
+                        CreatedDate = new DateTime(2016, 10, 30)
+                    }
+                }
+            };
+
+            var spendService = Substitute.For<ISpendService>();
+            var transactionService = Substitute.For<ITransactionService>();
+            transactionService.GetTransactions(userData).Returns(new List<DailyTransactionBlockViewModel>
+            {
+                new DailyTransactionBlockViewModel
+                {
+                    Date = "30 October 2016",
+                    TotalReceived = 0,
+                    TotalSpent = 25,
+                    Transactions = new List<TransactionViewModel>
+                    {
+                        new TransactionViewModel
+                        {
+                            HasUpgrade = true,
+                            ImageUrl = "image url",
+                            Name = "tesco",
+                            Amount = 25,
+                            Type = "Debit"
+                        }
+                    }
+                }
+            });
+
+            var sut = new SummaryService(transactionService, spendService);
+
+            var actual = sut.GetSummary(userData);
+
+            Assert.That(actual.Capital, Is.EqualTo(-25));
+            Assert.That(actual.SpendingSuggestions, Is.Empty);
+        }
     }
 }

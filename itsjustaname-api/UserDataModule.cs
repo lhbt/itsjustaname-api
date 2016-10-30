@@ -11,7 +11,7 @@ namespace itsjustaname_api
 {
     public class UserDataModule : NancyModule
     {
-        public UserDataModule(ITransactionService transactionService)
+        public UserDataModule(ITransactionService transactionService, ISummaryService summaryService)
         {
             Post["/userdata"] = parameters =>
             {
@@ -20,8 +20,15 @@ namespace itsjustaname_api
                 var userData = JsonConvert.DeserializeObject<UserData>(jsonData);
 
                 var transactions = transactionService.GetTransactions(userData);
+                var summary = summaryService.GetSummary(userData);
 
-                return Response.AsJson(transactions);
+                var response = new
+                {
+                    transactions = transactions,
+                    summary = summary
+                };
+
+                return Response.AsJson(response);
             };
         }
     }

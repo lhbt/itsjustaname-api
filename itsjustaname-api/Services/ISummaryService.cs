@@ -5,5 +5,6 @@ namespace itsjustaname_api.Services
     public interface ISummaryService
     {
         SummaryModel GetSummary();
+        SummaryModel GetSummary(UserData userData);
     }
 }
