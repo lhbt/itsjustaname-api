@@ -11,7 +11,7 @@ namespace itsjustaname_api.Repositories
     {
         public DefaultAlternativeIncomeRepository()
         {
-            defaultAlternativeIncome = GetAlternativeModelsFromFile();
+            _defaultAlternativeIncome = GetAlternativeModelsFromFile();
         }
 
         private IEnumerable<AlternativeIncomeModel> GetAlternativeModelsFromFile()
@@ -21,11 +21,11 @@ namespace itsjustaname_api.Repositories
             return result;
         }
 
-        private readonly IEnumerable<AlternativeIncomeModel> defaultAlternativeIncome;
+        private readonly IEnumerable<AlternativeIncomeModel> _defaultAlternativeIncome;
 
         public IEnumerable<AlternativeIncomeModel> GetAll()
         {
-            return defaultAlternativeIncome;
+            return _defaultAlternativeIncome;
         }
     }
 }

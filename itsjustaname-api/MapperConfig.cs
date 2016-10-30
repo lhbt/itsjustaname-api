@@ -18,6 +18,7 @@ namespace itsjustaname_api
             TransactionMappingConfiguration.CreateTransactionMappingLogic(cfg);
             SpendMappingConfiguration.CreateConfig(cfg);
             AlternativeIncomeConfiguration.CreateConfig(cfg);
+            AssetConfiguration.CreateConfig(cfg);
         }
     }
 }

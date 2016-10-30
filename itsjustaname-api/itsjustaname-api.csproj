@@ -85,13 +85,18 @@
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="MappingConfigurations\AlternativeIncomeConfiguration.cs" />
+    <Compile Include="MappingConfigurations\AssetConfiguration.cs" />
     <Compile Include="Models\AlternativeIncomeModel.cs" />
+    <Compile Include="Models\AssetModel.cs" />
     <Compile Include="Modules\AlternativeIncomeModule.cs" />
+    <Compile Include="Modules\AssetsModule.cs" />
     <Compile Include="Modules\ItemImageModule.cs" />
     <Compile Include="MapperConfig.cs" />
     <Compile Include="Models\EbayProductModel.cs" />
     <Compile Include="Models\SpendModel.cs" />
+    <Compile Include="Repositories\AssetRepository.cs" />
     <Compile Include="Repositories\DefaultAlternativeIncomeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAssetRepository.cs" />
     <Compile Include="Repositories\Interfaces\IGetDefaultAlternativeIncomeRepository.cs" />
     <Compile Include="Repositories\Interfaces\IItemImageSearchRepository.cs" />
     <Compile Include="Repositories\Interfaces\IKeywordRepository.cs" />
@@ -100,6 +105,8 @@
     <Compile Include="Repositories\UpgradeSpendingRepository.cs" />
     <Compile Include="Services\EbayStaticService.cs" />
     <Compile Include="Services\FindAlternativeIncomeService.cs" />
+    <Compile Include="Services\Interfaces\AssetService.cs" />
+    <Compile Include="Services\Interfaces\IAssetService.cs" />
     <Compile Include="Services\Interfaces\IFindAlternativeIncomeService.cs" />
     <Compile Include="Services\Interfaces\IItemImageSearchService.cs" />
     <Compile Include="Models\EbayModels\EbayItem.cs" />
@@ -137,6 +144,7 @@
     <Compile Include="Modules\UpgradeSpendingModule.cs" />
     <Compile Include="Modules\UserDataModule.cs" />
     <Compile Include="MappingConfigurations\SpendMappingConfiguration.cs" />
+    <Compile Include="ViewModels\AssetViewModel.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
     <Compile Include="ViewModels\AlternativeIncomeViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
@@ -155,6 +163,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MockData\upgradespending.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MockData\assets.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MockData\defaultalternativeincome.json">
