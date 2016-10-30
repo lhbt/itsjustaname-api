@@ -25,7 +25,7 @@ namespace itsjustaname_api.Repositories
                 var urls = serialisedValue.Select(u => (string) u);
                 return urls;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return new List<string>();
             }

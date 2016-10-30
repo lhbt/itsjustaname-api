@@ -88,10 +88,13 @@
   <ItemGroup>
     <Content Include="MockData\evestorchallengetransactiondata.csv" />
     <Content Include="MockData\mock.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
     <Content Include="MockData\imagepaths.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MockData\upgradespending.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
