@@ -36,7 +36,9 @@ namespace itsjustaname_api.Services
         {
             var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
 
-            return GetMappedTransactionsWithImages(transactions);
+            var results = GetMappedTransactionsWithImages(transactions);
+            results = results.OrderByDescending(r => r.Date);
+            return results;
         }
 
         public IEnumerable<DailyTransactionBlockViewModel> GetTransactions(UserData userData)
