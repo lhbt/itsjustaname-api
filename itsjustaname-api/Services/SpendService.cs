@@ -26,7 +26,8 @@ namespace itsjustaname_api.Services
                 ImageUrl = ebayProduct.ImageUrl,
                 Price = ebayProduct.Price,
                 Name = ebayProduct.Name,
-                LinkToArticle = ebayProduct.ItemUrl
+                LinkToArticle = ebayProduct.ItemUrl,
+                BigImageUrl = ebayProduct.BigImageUrl
             };
         }
     }

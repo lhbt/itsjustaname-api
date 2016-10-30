@@ -19,6 +19,7 @@ namespace itsjustaname_api.tests.Services
             
             const string itemName = "WASHING MACHINE";
             const string imageUrl = "image url";
+            const string bigImageUrl = "big image url";
             const string itemUrl = "item url";
             const double price = 29.99;
 
@@ -26,7 +27,7 @@ namespace itsjustaname_api.tests.Services
             ebayService.GetEbayProduct(keyword).Returns(new EbayProductModel
             {
                 Price = price,
-                BigImageUrl = "big image url",
+                BigImageUrl = bigImageUrl,
                 ImageUrl = imageUrl,
                 ItemUrl = itemUrl,
                 Name = itemName
@@ -40,6 +41,7 @@ namespace itsjustaname_api.tests.Services
             Assert.That(actual.LinkToArticle, Is.EqualTo(itemUrl));
             Assert.That(actual.ImageUrl, Is.EqualTo(imageUrl));
             Assert.That(actual.Price, Is.EqualTo(price));
+            Assert.That(actual.BigImageUrl, Is.EqualTo(bigImageUrl));
         }
     }
 }
