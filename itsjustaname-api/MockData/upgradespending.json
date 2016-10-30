@@ -42,5 +42,13 @@
       "notes": "Don't Miss Italy's favourite coffee! Could be your favourite aswell for an estimative 50% better quality by paying more pounds!",
       "link": "http://www.lavazza.co.uk/uk/"
     }
+  ],
+  "boots": [
+    {
+      "name": "Co-Op Pharmacy",
+      "imageUrl": "http://castledeneshoppingcentre.co.uk/wp-content/uploads/2015/03/The-Co-operative-Pharmacy.png",
+      "notes": "The secret to living longer ... invest in 45% more expensive drugs from co-op pharmacy for guaranteed success, 9 in 10 patients recommend!",
+      "link": "www.coop.co.uk/find-us/pharmacy/"
+    }
   ]
 }
