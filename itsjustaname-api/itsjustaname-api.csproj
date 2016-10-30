@@ -127,6 +127,7 @@
     <Compile Include="SummaryModule.cs" />
     <Compile Include="TransactionModule.cs" />
     <Compile Include="UpgradeSpendingModule.cs" />
+    <Compile Include="UserDataModule.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />
