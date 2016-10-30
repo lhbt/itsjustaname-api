@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using AutoMapper;
 using itsjustaname_api.Models;
-using itsjustaname_api.Repositories;
 using itsjustaname_api.Repositories.Interfaces;
 using itsjustaname_api.Services.Interfaces;
 
@@ -8,13 +7,15 @@ namespace itsjustaname_api.Services
 {
     public class SpendService : ISpendService
     {
-        private readonly IKeywordRepository _keywordsRepository;
         private readonly IEbayService _ebayService;
+        private readonly IMapper _mapper;
+        private readonly IKeywordRepository _keywordsRepository;
 
-        public SpendService(IKeywordRepository keywordsRepository, IEbayService ebayService)
+        public SpendService(IKeywordRepository keywordsRepository, IEbayService ebayService, IMapper mapper)
         {
             _keywordsRepository = keywordsRepository;
             _ebayService = ebayService;
+            _mapper = mapper;
         }
 
         public SpendModel GetRandomIdea()
@@ -22,15 +23,10 @@ namespace itsjustaname_api.Services
             var keyword = _keywordsRepository.GetRandomKeyword();
 
             var ebayProduct = _ebayService.GetEbayProduct(keyword);
-            
-            return new SpendModel
-            {
-                ImageUrl = ebayProduct.ImageUrl,
-                Price = ebayProduct.Price,
-                Name = ebayProduct.Name,
-                LinkToArticle = ebayProduct.ItemUrl,
-                BigImageUrl = ebayProduct.BigImageUrl
-            };
+
+            var result = _mapper.Map<SpendModel>(ebayProduct);
+
+            return result;
         }
     }
 }

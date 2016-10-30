@@ -128,6 +128,7 @@
     <Compile Include="Modules\TransactionModule.cs" />
     <Compile Include="Modules\UpgradeSpendingModule.cs" />
     <Compile Include="Modules\UserDataModule.cs" />
+    <Compile Include="MappingConfigurations\SpendMappingConfiguration.cs" />
     <Compile Include="ViewModels\DailyTransactionBlockViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="ViewModels\TransactionViewModel.cs" />

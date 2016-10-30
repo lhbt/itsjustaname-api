@@ -35,7 +35,9 @@ namespace itsjustaname_api.tests.Services
                 Name = itemName
             });
 
-            var sut = new SpendService(keywordsRepository, ebayService);
+            var mapper = MapperConfig.Initialise();
+
+            var sut = new SpendService(keywordsRepository, ebayService, mapper);
 
             var actual = sut.GetRandomIdea();
 
