@@ -9,5 +9,6 @@ namespace itsjustaname_api.Services.Interfaces
         string GetTransactionsAsJson();
         IEnumerable<DailyTransactionBlockViewModel> GetTransactions();
         IEnumerable<DailyTransactionBlockViewModel> GetTransactions(UserData userData);
+        void AddTransactions(UserData userData);
     }
 }

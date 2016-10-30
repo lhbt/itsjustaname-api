@@ -30,7 +30,8 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService, spendService);
+            var assetService = Substitute.For<IAssetService>();
+            var sut = new SummaryService(transactionService, spendService, assetService);
 
             var actual = sut.GetSummary();
 
@@ -59,7 +60,8 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService, spendService);
+            var assetService = Substitute.For<IAssetService>();
+            var sut = new SummaryService(transactionService, spendService, assetService);
 
             var actual = sut.GetSummary();
 
@@ -83,11 +85,43 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService, spendService);
+            var assetService = Substitute.For<IAssetService>();
+            var sut = new SummaryService(transactionService, spendService, assetService);
 
             var actual = sut.GetSummary();
             
             Assert.That(actual.AverageDailySpend, Is.EqualTo(30));
+        }
+
+        [Test]
+        public void ItShouldHaveTotalAssetWorth()
+        {
+            var spendService = Substitute.For<ISpendService>();
+            var transactionService = Substitute.For<ITransactionService>();
+            transactionService.GetTransactions().Returns(new List<DailyTransactionBlockViewModel>
+            {
+                new DailyTransactionBlockViewModel
+                {
+                    TotalSpent = 40
+                },
+                new DailyTransactionBlockViewModel
+                {
+                    TotalSpent = 20
+                }
+            });
+
+            var assetService = Substitute.For<IAssetService>();
+            assetService.GetAll()
+                .Returns(new List<AssetViewModel>()
+                {
+                    new AssetViewModel() {Worth = 50000},
+                    new AssetViewModel() {Worth = 60000}
+                });
+            var sut = new SummaryService(transactionService, spendService, assetService);
+
+            var actual = sut.GetSummary();
+
+            Assert.That(actual.TotalAssetWorth, Is.EqualTo(110000));
         }
 
         [Test]
@@ -130,7 +164,8 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService, spendService);
+            var assetService = Substitute.For<IAssetService>();
+            var sut = new SummaryService(transactionService, spendService, assetService);
 
             var actual = sut.GetSummary(userData);
 
