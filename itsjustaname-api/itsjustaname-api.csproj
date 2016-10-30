@@ -93,6 +93,7 @@
     <Compile Include="Repositories\ItemImageSearchRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUpgradeSpendingRepository.cs" />
     <Compile Include="Repositories\UpgradeSpendingRepository.cs" />
+    <Compile Include="Services\EbayStaticService.cs" />
     <Compile Include="Services\Interfaces\IItemImageSearchService.cs" />
     <Compile Include="Models\EbayModels\EbayItem.cs" />
     <Compile Include="Models\EbayModels\EbayResponse.cs" />

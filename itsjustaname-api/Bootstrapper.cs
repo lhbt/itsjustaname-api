@@ -1,4 +1,6 @@
-﻿using Nancy;
+﻿using itsjustaname_api.Services;
+using itsjustaname_api.Services.Interfaces;
+using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 
@@ -10,6 +12,7 @@ namespace itsjustaname_api
         {
             var mapper = MapperConfig.Initialise();
             container.Register(mapper);
+            container.Register<IEbayService, EbayStaticService>();
         }
     }
 }
