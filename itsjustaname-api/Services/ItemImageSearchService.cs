@@ -14,7 +14,7 @@ namespace itsjustaname_api.Services
 
         public string SearchImage(string name)
         {
-            var results = _repository.Search(name);
+            var results = _repository.Search(name.ToLower());
 
             return results.FirstOrDefault();
         }

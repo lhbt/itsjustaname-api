@@ -10,7 +10,7 @@ namespace itsjustaname_api
             Get["/itemimage/{name}"] = parameters =>
             {
                 string name = parameters.name;
-                var imageUrl = itemImageSearchService.SearchImage(name.ToLower());
+                var imageUrl = itemImageSearchService.SearchImage(name);
 
                 return Response.AsJson(imageUrl);
             };
