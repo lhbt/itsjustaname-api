@@ -54,10 +54,14 @@ namespace itsjustaname_api.Services
 
         public void AddTransactions(UserData userData)
         {
-            foreach (var transaction in userData.Transactions)
+            if (userData != null && userData.Transactions != null)
             {
-                _transactionRepo.AddTransaction(transaction);
+                foreach (var transaction in userData.Transactions)
+                {
+                    _transactionRepo.AddTransaction(transaction);
+                }
             }
+
         }
 
         private IEnumerable<DailyTransactionBlockViewModel> GetMappedTransactionsWithImages(
