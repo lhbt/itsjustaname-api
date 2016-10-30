@@ -36,6 +36,18 @@ namespace itsjustaname_api.Services
         {
             var transactions = _dailyTransactionBlockRepository.GetAllDailyTransactionBlocks();
 
+            return GetMappedTransactionsWithImages(transactions);
+        }
+
+        public IEnumerable<DailyTransactionBlockViewModel> GetTransactions(UserData userData)
+        {
+            var transactions = _dailyTransactionBlockRepository.GetDailyTransactionBlocks(userData);
+
+            return GetMappedTransactionsWithImages(transactions);
+        }
+
+        private IEnumerable<DailyTransactionBlockViewModel> GetMappedTransactionsWithImages(IEnumerable<DailyTransactionBlockModel> transactions)
+        {
             var mappedTransactions = MapToDailyTransactionBlockViewModel(transactions);
 
             AppendImagesTo(mappedTransactions);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using itsjustaname_api.Models;
 using itsjustaname_api.Services;
 using itsjustaname_api.ViewModels;
 using NSubstitute;
@@ -13,6 +14,7 @@ namespace itsjustaname_api.tests.Services
         [Test]
         public void ItShouldReturnTheTotalAmountOfMoneySpent()
         {
+            var spendService = Substitute.For<ISpendService>();
             var transactionService = Substitute.For<ITransactionService>();
             transactionService.GetTransactions().Returns(new List<DailyTransactionBlockViewModel>
             {
@@ -26,7 +28,7 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService);
+            var sut = new SummaryService(transactionService, spendService);
 
             var actual = sut.GetSummary();
 
@@ -36,6 +38,12 @@ namespace itsjustaname_api.tests.Services
         [Test]
         public void ItShouldReturnTheTotalAmountOfMoneyReceived()
         {
+            var spendService = Substitute.For<ISpendService>();
+            spendService.GetRandomIdea().Returns(new SpendModel
+            {
+                Price = 50
+            });
+
             var transactionService = Substitute.For<ITransactionService>();
             transactionService.GetTransactions().Returns(new List<DailyTransactionBlockViewModel>
             {
@@ -49,7 +57,7 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService);
+            var sut = new SummaryService(transactionService, spendService);
 
             var actual = sut.GetSummary();
 
@@ -59,6 +67,7 @@ namespace itsjustaname_api.tests.Services
         [Test]
         public void ItShouldReturnTheAvgSpendPerDay()
         {
+            var spendService = Substitute.For<ISpendService>();
             var transactionService = Substitute.For<ITransactionService>();
             transactionService.GetTransactions().Returns(new List<DailyTransactionBlockViewModel>
             {
@@ -72,7 +81,7 @@ namespace itsjustaname_api.tests.Services
                 }
             });
 
-            var sut = new SummaryService(transactionService);
+            var sut = new SummaryService(transactionService, spendService);
 
             var actual = sut.GetSummary();
             

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using itsjustaname_api.Models;
 using Newtonsoft.Json;
 
 namespace itsjustaname_api.ViewModels
@@ -16,5 +17,12 @@ namespace itsjustaname_api.ViewModels
 
         [JsonProperty("totalSpent")]
         public double TotalSpent { get; set; }
+
+        [JsonProperty("capital")]
+        public double Capital { get; set; }
+
+        [JsonProperty("spendingSuggestions")]
+        public List<SpendModel> SpendingSuggestions { get; set; }
+
     }
 }

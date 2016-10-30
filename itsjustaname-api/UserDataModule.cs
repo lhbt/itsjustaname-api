@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using AutoMapper;
 using itsjustaname_api.Models;
 using itsjustaname_api.Repositories;
+using itsjustaname_api.Services;
 using itsjustaname_api.ViewModels;
 using Nancy;
 using Nancy.Extensions;
@@ -11,7 +11,7 @@ namespace itsjustaname_api
 {
     public class UserDataModule : NancyModule
     {
-        public UserDataModule(IDailyTransactionBlockRepository dailyTransactionBlockRepository, IMapper mapper)
+        public UserDataModule(ITransactionService transactionService)
         {
             Post["/userdata"] = parameters =>
             {
@@ -19,13 +19,9 @@ namespace itsjustaname_api
 
                 var userData = JsonConvert.DeserializeObject<UserData>(jsonData);
 
-                var transactions = dailyTransactionBlockRepository.GetDailyTransactionBlocks(userData);
+                var transactions = transactionService.GetTransactions(userData);
 
-                var dailyTransactionBlockViewModels = new List<DailyTransactionBlockViewModel>();
-
-                mapper.Map(transactions, dailyTransactionBlockViewModels);
-
-                return Response.AsJson(dailyTransactionBlockViewModels);
+                return Response.AsJson(transactions);
             };
         }
     }

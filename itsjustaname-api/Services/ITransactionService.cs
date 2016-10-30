@@ -7,5 +7,6 @@ namespace itsjustaname_api.Services
     {
         string GetTransactionsAsJson();
         IEnumerable<DailyTransactionBlockViewModel> GetTransactions();
+        IEnumerable<DailyTransactionBlockViewModel> GetTransactions(UserData userData);
     }
 }

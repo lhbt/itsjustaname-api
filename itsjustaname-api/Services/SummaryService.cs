@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using itsjustaname_api.Models;
 
@@ -7,10 +8,12 @@ namespace itsjustaname_api.Services
     public class SummaryService : ISummaryService
     {
         private readonly ITransactionService _transactionService;
+        private readonly ISpendService _spendService;
 
-        public SummaryService(ITransactionService transactionService)
+        public SummaryService(ITransactionService transactionService, ISpendService spendService)
         {
             _transactionService = transactionService;
+            _spendService = spendService;
         }
 
         public SummaryModel GetSummary()
@@ -21,11 +24,26 @@ namespace itsjustaname_api.Services
             var totalReceived = transactions.Sum(x => x.TotalReceived);
             var avgDailySpend = Math.Round(transactions.Average(x => x.TotalSpent), 0);
 
+            var capital = totalReceived - totalSpent;
+            var capitalBeforeSpend = capital;
+
+            var spendingSuggestions = new List<SpendModel>();
+
+            while (capital > 0)
+            {
+                var spendIdea = _spendService.GetRandomIdea();
+
+                spendingSuggestions.Add(spendIdea);
+                capital = capital - spendIdea.Price;
+            }
+
             return new SummaryModel
             {
                 TotalSpent = totalSpent,
                 TotalReceived = totalReceived,
-                AverageDailySpend = avgDailySpend
+                AverageDailySpend = avgDailySpend,
+                Capital = capitalBeforeSpend,
+                SpendingSuggestions = spendingSuggestions
             };
         }
     }

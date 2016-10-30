@@ -26,7 +26,7 @@ namespace itsjustaname_api.tests
 ]
 }";
 
-            const string expectedResponse = @"[{""totalSpent"":29,""totalReceived"":3444,""transactions"":[{""type"":""debit"",""amount"":29,""name"":""tesco"",""imageUrl"":null,""hasUpgrade"":false},{""type"":""credit"",""amount"":3444,""name"":""pay"",""imageUrl"":null,""hasUpgrade"":false}],""date"":""30 October 2016""}]";
+            const string expectedResponse = @"[{""totalSpent"":29,""totalReceived"":3444,""transactions"":[{""type"":""debit"",""amount"":29,""name"":""tesco"",""imageUrl"":""http://cdn-2.famouslogos.us/images/tesco-logo.jpg"",""hasUpgrade"":true},{""type"":""credit"",""amount"":3444,""name"":""pay"",""imageUrl"":null,""hasUpgrade"":false}],""date"":""30 October 2016""}]";
             var browser = new Browser(new Bootstrapper());
 
             var response = browser.Post("/userdata", context => context.Body(inputJson));
