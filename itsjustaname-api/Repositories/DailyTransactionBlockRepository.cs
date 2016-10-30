@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using itsjustaname_api.Models;
 using itsjustaname_api.Modules;
@@ -39,11 +40,22 @@ namespace itsjustaname_api.Repositories
 
         private static IEnumerable<DailyTransactionBlockModel> MapTransactionsToDailyBlocks(IEnumerable<TransactionModel> transactions)
         {
-            return transactions.GroupBy(t => t.CreatedDate).Select(ts => new DailyTransactionBlockModel
+            return transactions.GroupBy(t => GetDate(t.CreatedDate)).Select(ts => new DailyTransactionBlockModel
             {
                 Date = ts.Key,
                 Transactions = ts.ToList()
             });
+        }
+
+        private static DateTime? GetDate(DateTime? date)
+        {
+            if (date != null)
+            {
+                var dateValue = date.Value;
+                var result = new DateTime(dateValue.Year, dateValue.Month, dateValue.Day);
+                return result;
+            }
+            return new DateTime?();
         }
     }
 }
