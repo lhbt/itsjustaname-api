@@ -15,11 +15,17 @@ namespace itsjustaname_api.Repositories
 
         public string GetImage(string name)
         {
-            if (_imageStore.Contains(name))
+            try
             {
-                return (string)_imageStore.Get(name);
+                if (_imageStore.Contains(name))
+                {
+                    return (string) _imageStore.Get(name);
+                }
             }
-            return string.Empty;
+            catch (Exception e)
+            {
+                return string.Empty;
+            }
         }
     }
 }
