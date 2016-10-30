@@ -27,7 +27,7 @@ namespace itsjustaname_api.Services
 
             var name = ebayItem.Name[0];
             var imageUrl = ebayItem.ImageUrl[0];
-            var bigImageUrl = ebayItem.BigImageUrl[0];
+            var bigImageUrl = ebayItem.BigImageUrl == null ? "" : ebayItem.BigImageUrl[0];
             var itemUrl = ebayItem.ItemUrl[0];
             var price = ebayItem.Prices[0].ConvertedPrice[0].Value;
             
