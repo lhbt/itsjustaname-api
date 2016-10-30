@@ -12,7 +12,7 @@ namespace itsjustaname_api
         {
             var mapper = MapperConfig.Initialise();
             container.Register(mapper);
-            container.Register<IEbayService, EbayStaticService>();
+            container.Register<IEbayService, EbayService>();
         }
     }
 }
