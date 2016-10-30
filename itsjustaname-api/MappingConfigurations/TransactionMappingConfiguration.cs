@@ -21,9 +21,9 @@ namespace itsjustaname_api.MappingConfigurations
 
             cfg.CreateMap<DailyTransactionBlockModel, DailyTransactionBlockViewModel>()
                 .ForMember(dest => dest.TotalSpent,
-                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount < 0).Sum(t => t.Amount) / 100))
+                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.CreditOrDebit == "Debit").Sum(t => t.Amount) / 100))
                 .ForMember(dest => dest.TotalReceived,
-                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.SignedAmount > 0).Sum(t => t.Amount) / 100))
+                    opt => opt.MapFrom(src => src.Transactions.Where(t => t.CreditOrDebit == "Credit").Sum(t => t.Amount) / 100))
                 .ForMember(dest => dest.Date,
                     opt => opt.MapFrom(src => src.Date.Value.ToString("D")));
 

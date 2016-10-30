@@ -83,6 +83,7 @@
     <Compile Include="Services\TransactionServiceTests.cs" />
     <Compile Include="Services\UpgradeSpendingServiceTests.cs" />
     <Compile Include="TransactionModuleTests.cs" />
+    <Compile Include="UserDataModuleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="MockData\evestorchallengetransactiondata.csv" />
