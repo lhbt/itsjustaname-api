@@ -11,17 +11,17 @@ namespace itsjustaname_api.Repositories
     {
         public TransactionRepository()
         {
-            _defaultTransactions = GetTransactionsFromFile();
+            _transactionStore = GetInitialTransactions();
         }
 
-        private readonly IEnumerable<TransactionModel> _defaultTransactions;
+        private readonly IEnumerable<TransactionModel> _transactionStore;
 
         public IEnumerable<TransactionModel> GetAll()
         {
-            return _defaultTransactions;
+            return _transactionStore;
         }
 
-        private IEnumerable<TransactionModel> GetTransactionsFromFile()
+        private IEnumerable<TransactionModel> GetInitialTransactions()
         {
             var startupPath = AppDomain.CurrentDomain.BaseDirectory;
             var result = JsonConvert.DeserializeObject<TransactionModel[]>(File.ReadAllText(startupPath + "/MockData/mock.json"));
