@@ -1,40 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using itsjustaname_api.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace itsjustaname_api.Repositories
 {
     public class UpgradeSpendingRepository : IUpgradeSpendingRepository
     {
-        private static readonly UpgradeModel WaitroseUpgrade = new UpgradeModel
+        public UpgradeSpendingRepository()
         {
-            ImageUrl = "http://vectorlogofree.com/wp-content/uploads/2014/06/waitrose-vector-logo-400x400.png",
-            Name = "Waitrose",
-            Notes = "You won't believe this! Guaranteed 50% increase in quality for an estimate of 150 pounds for similar purchase!",
-            Link = "http://www.waitrose.com/"
-        };
+            var startupPath = AppDomain.CurrentDomain.BaseDirectory;
+            UpgradeSpendings = JsonConvert.DeserializeObject(File.ReadAllText(startupPath + "/MockData/upgradespending.json"));
+        }
 
-        private static readonly UpgradeModel MorrisonsUpgrade = new UpgradeModel
-        {
-            ImageUrl = "http://www.underconsideration.com/brandnew/archives/morrisons_logo.png",
-            Name = "Morrisons",
-            Notes = "AMAZING - Only 125 pounds for an amazing 25% increase in quality!",
-            Link = "https://groceries.morrisons.com"
-        };
-
-        private readonly IDictionary<string, IEnumerable<UpgradeModel>> _upgradePaths = new Dictionary
-            <string, IEnumerable<UpgradeModel>>
-            {
-                {"tesco", new List<UpgradeModel>() {WaitroseUpgrade, MorrisonsUpgrade}}
-            };
+        public dynamic UpgradeSpendings { get; set; }
 
         public IEnumerable<UpgradeModel> GetUpgrades(string name)
         {
-            if (_upgradePaths.ContainsKey(name))
+            try
             {
-                return _upgradePaths[name];
+                JArray results = UpgradeSpendings[name];
+                var resultsAsStrings = results.Select(r => r.ToString());
+                var models = resultsAsStrings.Select(JsonConvert.DeserializeObject<UpgradeModel>);
+                return models;
             }
-
-            return new List<UpgradeModel>();
+            catch (Exception)
+            {
+                return new List<UpgradeModel>();
+            }
         }
     }
 }

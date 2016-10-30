@@ -1,0 +1,24 @@
+{
+  "tesco": [
+    {
+      "name": "Waitrose",
+      "imageUrl": "http://vectorlogofree.com/wp-content/uploads/2014/06/waitrose-vector-logo-400x400.png",
+      "notes": "You won't believe this! Guaranteed 50% increase in quality for an estimate of 150 pounds for similar purchase!",
+      "link": "http://www.waitrose.com/"
+    },
+    {
+      "name": "Morrisons",
+      "imageUrl": "http://www.underconsideration.com/brandnew/archives/morrisons_logo.png",
+      "notes": "AMAZING - Only 125 pounds for an amazing 25% increase in quality!",
+      "link": "https://groceries.morrisons.com"
+    }
+  ],
+  "amazon.com": [
+    {
+      "name": "Amazon.co.uk",
+      "imageUrl": "https://img.grouponcdn.com/coupons/ujpmDoiTKemNsUDzju8G67/amazon_co_uk-500x500",
+      "notes": "Because the only way to beat amazon.com is to use Amazon UK and pay in Pounds! ",
+      "link": "http://www.amazon.co.uk/"
+    }
+  ]
+}
