@@ -1,46 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Caching;
 using DuckDuckGo.Net;
+using Newtonsoft.Json;
 
 namespace itsjustaname_api.Repositories
 {
     public class ItemImageSearchRepository : IItemImageSearchRepository
     {
-        private readonly FileCache _cache;
-        private const string TeamName = "hackmanchester2016-itsjustaname-team";
-
         public ItemImageSearchRepository()
         {
-            _cache = new FileCache(AppDomain.CurrentDomain.BaseDirectory + "filecache");
+            var startupPath = AppDomain.CurrentDomain.BaseDirectory;
+            ImageUrls = JsonConvert.DeserializeObject(File.ReadAllText(startupPath + "/MockData/imagepaths.json"));
         }
+
+        public dynamic ImageUrls { get; set; }
 
         public IEnumerable<string> Search(string name)
         {
-            var cachedItem = _cache.Get(name);
-            if (cachedItem != null)
-            {
-                return (IEnumerable<string>)cachedItem;
-            }
-
-            try
-            {
-                var search = new Search();
-                var images = search.Query(name, "random2");
-                
-                if (images.Results.Any())
-                {
-                    var iconUrls = images.Results.Select(i => i.Icon.Url);
-                    _cache.Add(name, iconUrls, DateTimeOffset.MaxValue);
-                    return iconUrls;
-                }
-            }
-            catch (Exception e)
-            {
-                return new List<string>();
-            }
-
+            var x = ImageUrls[name];
             return new List<string>();
         }
     }
