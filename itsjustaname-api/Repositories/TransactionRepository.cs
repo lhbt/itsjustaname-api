@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using itsjustaname_api.Models;
 using itsjustaname_api.Repositories.Interfaces;
 using Newtonsoft.Json;
@@ -30,7 +31,7 @@ namespace itsjustaname_api.Repositories
         {
             var startupPath = AppDomain.CurrentDomain.BaseDirectory;
             var result = JsonConvert.DeserializeObject<TransactionModel[]>(File.ReadAllText(startupPath + "/MockData/mock.json"));
-            return result;
+            return result.ToList();
         }
     }
 }
